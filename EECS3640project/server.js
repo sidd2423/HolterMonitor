@@ -7,11 +7,11 @@ wss.on('connection', (ws) => {
 
   ws.on('message', (message) => {
     try {
-      // Parse the incoming message as JSON
+     
       const data = JSON.parse(message);
       console.log(`Received ECG data: ${data.ecg_value}`);
       
-      // Broadcast the message to all connected clients
+    
       wss.clients.forEach((client) => {
         if (client.readyState === WebSocket.OPEN) {
           client.send(JSON.stringify({ ecg_value: data.ecg_value }));
